@@ -1,73 +1,75 @@
 /*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ * Manulife demo theme for AEM Edge Delivery Services
+ * Drop-in replacement for /styles/styles.css in the aem-boilerplate.
  *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * Strategy: the boilerplate header, footer, cards and columns blocks read
+ * these :root tokens, so changing tokens restyles most of the site without
+ * fighting block-level CSS. Rules below the tokens fill the gaps.
+ *
+ * Brand hex values are approximations. Swap in the official palette from
+ * the Manulife brand guide by editing only the "brand palette" group.
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* brand palette */
+  --mfc-green: #00a758;
+  --mfc-green-deep: #00543c;
+  --mfc-green-ink: #003325;
+  --mfc-mint: #e8f5ee;
+  --mfc-stone: #f4f6f5;
+  --mfc-line: #d5dcd9;
+  --mfc-text: #1c2623;
+  --mfc-text-soft: #50605a;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* boilerplate tokens (these drive header, footer, cards, columns) */
+  --background-color: #fff;
+  --light-color: var(--mfc-stone);
+  --dark-color: var(--mfc-green-deep);
+  --text-color: var(--mfc-text);
+  --link-color: var(--mfc-green-deep);
+  --link-hover-color: var(--mfc-green);
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* fonts: swap the first family if Manulife Sans is licensed and loaded in fonts.css */
+  --body-font-family: 'Manulife Sans', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', arial, sans-serif;
+  --heading-font-family: var(--body-font-family);
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* type scale (mobile first) */
+  --body-font-size-m: 1.0625rem;
+  --body-font-size-s: 0.9375rem;
+  --body-font-size-xs: 0.8125rem;
+  --heading-font-size-xxl: 2.25rem;
+  --heading-font-size-xl: 1.875rem;
+  --heading-font-size-l: 1.5rem;
+  --heading-font-size-m: 1.25rem;
+  --heading-font-size-s: 1.0625rem;
+  --heading-font-size-xs: 1rem;
 
-  /* nav height */
-  --nav-height: 64px;
-}
-
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
+  /* layout */
+  --nav-height: 72px;
+  --content-width: 1200px;
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --shadow-raised: 0 1px 2px rgb(0 40 28 / 8%), 0 8px 24px rgb(0 40 28 / 8%);
 }
 
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --body-font-size-m: 1.125rem;
+    --body-font-size-s: 1rem;
+    --heading-font-size-xxl: 3.5rem;
+    --heading-font-size-xl: 2.5rem;
+    --heading-font-size-l: 1.875rem;
+    --heading-font-size-m: 1.5rem;
+    --heading-font-size-s: 1.1875rem;
+    --nav-height: 80px;
   }
+}
+
+/* base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -78,6 +80,7 @@ body {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 body.appear {
@@ -93,26 +96,29 @@ footer .footer {
   visibility: hidden;
 }
 
-header .header[data-block-status="loaded"],
-footer .footer[data-block-status="loaded"] {
+header .header[data-block-status='loaded'],
+footer .footer[data-block-status='loaded'] {
   visibility: visible;
 }
 
+/* headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  scroll-margin: 40px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--mfc-green-ink);
+  scroll-margin: calc(var(--nav-height) + 1rem);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
+h1 { font-size: var(--heading-font-size-xxl); letter-spacing: -0.025em; }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
@@ -126,7 +132,12 @@ ul,
 pre,
 blockquote {
   margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.8em;
+}
+
+main > div > .default-content-wrapper p,
+main .default-content-wrapper li {
+  max-width: 68ch;
 }
 
 code,
@@ -135,147 +146,26 @@ pre {
 }
 
 pre {
-  padding: 16px;
-  border-radius: 8px;
+  padding: 1rem;
+  border-radius: var(--radius-s);
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
+blockquote {
+  margin-inline: 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 4px solid var(--mfc-green);
+  color: var(--mfc-text-soft);
+  font-size: var(--heading-font-size-s);
 }
 
-input,
-textarea,
-select,
-button {
-  font: inherit;
-}
-
-/* links */
-a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
-  overflow-wrap: break-word;
-}
-
-a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
-}
-
-/* buttons */
-p.button-wrapper {
-  margin: 12px 0;
-}
-
-a.button:any-link,
-button.button {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
-  text-decoration: none;
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-a.button[aria-disabled="true"],
-button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-a.button.primary,
-button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
-}
-
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
-}
-
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-a.button.secondary,
-button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
-}
-
-a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
-a.button.accent,
-button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
-}
-
-a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
-}
-
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+hr {
+  height: 1px;
+  margin: 2rem 0;
+  border: 0;
+  background-color: var(--mfc-line);
 }
 
 main img {
@@ -284,42 +174,306 @@ main img {
   height: auto;
 }
 
-.icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
+/* links */
+a:any-link {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  overflow-wrap: break-word;
 }
 
-.icon img {
-  height: 100%;
-  width: 100%;
+a:hover {
+  color: var(--link-hover-color);
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--mfc-green);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* buttons: EDS decorates a lone link in a paragraph as .button */
+a.button:any-link,
+button {
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.7em 1.6em;
+  border: 2px solid var(--mfc-green-deep);
+  border-radius: 999px;
+  background-color: var(--mfc-green-deep);
+  color: #fff;
+  font-family: inherit;
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+a.button:hover,
+a.button:focus-visible,
+button:hover,
+button:focus-visible {
+  border-color: var(--mfc-green);
+  background-color: var(--mfc-green);
+  color: #fff;
+  text-decoration: none;
+}
+
+button:disabled,
+button:disabled:hover {
+  border-color: var(--mfc-line);
+  background-color: var(--mfc-line);
+  color: var(--mfc-text-soft);
+  cursor: not-allowed;
+}
+
+a.button.secondary,
+a.button.secondary:any-link {
+  border-color: var(--mfc-green-deep);
+  background-color: transparent;
+  color: var(--mfc-green-deep);
+}
+
+a.button.secondary:hover,
+a.button.secondary:focus-visible {
+  background-color: var(--mfc-green-deep);
+  color: #fff;
+}
+
+main .button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
 }
 
 /* sections */
 main > .section {
-  margin: 40px 0;
-}
-
-main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
-}
-
-main > .section:first-of-type {
-  margin-top: 0;
+  margin: 0;
+  padding: 3rem 1rem;
 }
 
 @media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+  main > .section {
+    padding: 4.5rem 2rem;
   }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+main > .section > div {
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
+main > .section:first-of-type > .default-content-wrapper > h1:first-child {
+  margin-top: 0;
+}
+
+/* section styles: add "Section Metadata" with Style = light, highlight or dark */
+main > .section.light {
+  background-color: var(--mfc-stone);
+}
+
+main > .section.highlight {
+  background-color: var(--mfc-mint);
+}
+
+main > .section.dark {
+  background-color: var(--mfc-green-deep);
+  color: #fff;
+}
+
+main > .section.dark h1,
+main > .section.dark h2,
+main > .section.dark h3,
+main > .section.dark h4 {
+  color: #fff;
+}
+
+main > .section.dark a:any-link:not(.button) {
+  color: #fff;
+}
+
+main > .section.dark a.button:any-link {
+  border-color: #fff;
+  background-color: #fff;
+  color: var(--mfc-green-deep);
+}
+
+main > .section.dark a.button:hover,
+main > .section.dark a.button:focus-visible {
+  border-color: var(--mfc-green);
+  background-color: var(--mfc-green);
+  color: #fff;
+}
+
+/* hero block: full-bleed image under a deep green wash so text stays legible */
+main .hero-container,
+main .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+main .hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 420px;
+  padding: 3rem 1rem;
+  background-color: var(--mfc-green-deep);
+  color: #fff;
+  overflow: hidden;
+}
+
+main .hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 51 37 / 92%) 0%, rgb(0 51 37 / 70%) 45%, rgb(0 51 37 / 10%) 100%);
+  z-index: 1;
+}
+
+main .hero picture,
+main .hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+main .hero > div {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
+main .hero h1,
+main .hero h2 {
+  max-width: 16ch;
+  margin-top: 0;
+  color: #fff;
+}
+
+main .hero p {
+  max-width: 48ch;
+}
+
+main .hero a.button:any-link {
+  border-color: var(--mfc-green);
+  background-color: var(--mfc-green);
+}
+
+main .hero a.button:hover,
+main .hero a.button:focus-visible {
+  border-color: #fff;
+  background-color: #fff;
+  color: var(--mfc-green-deep);
+}
+
+@media (width >= 900px) {
+  main .hero {
+    min-height: 560px;
+    padding: 4rem 2rem;
+  }
+}
+
+/* cards block */
+main .cards > ul > li {
+  border: 1px solid var(--mfc-line);
+  border-radius: var(--radius-m);
+  background-color: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+main .cards > ul > li:hover {
+  box-shadow: var(--shadow-raised);
+}
+
+main .cards .cards-card-body {
+  padding: 1.25rem;
+}
+
+main .cards .cards-card-body h3,
+main .cards .cards-card-body h4 {
+  margin-top: 0;
+}
+
+/* columns block */
+main .columns > div {
+  gap: 1.5rem;
+}
+
+@media (width >= 900px) {
+  main .columns > div {
+    gap: 3rem;
+  }
+}
+
+/* tables */
+main .table-wrapper,
+main .default-content-wrapper table {
+  overflow-x: auto;
+}
+
+main table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--body-font-size-s);
+}
+
+main th {
+  background-color: var(--mfc-green-deep);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+}
+
+main th,
+main td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--mfc-line);
+}
+
+main tbody tr:nth-child(even) {
+  background-color: var(--mfc-stone);
+}
+
+/* header and footer finishing touches (layout lives in the block CSS) */
+header nav {
+  border-bottom: 3px solid var(--mfc-green);
+}
+
+footer {
+  margin-top: 0;
+  background-color: var(--mfc-green-ink);
+  color: #d9e6e0;
+  font-size: var(--body-font-size-xs);
+}
+
+footer a:any-link {
+  color: #fff;
+}
+
+footer a:hover {
+  color: var(--mfc-mint);
+}
+
+/* respect user motion settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
