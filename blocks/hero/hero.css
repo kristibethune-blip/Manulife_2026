@@ -1,3 +1,6 @@
+main > .section.hero-container { padding: 0; }
+main > .section.hero-container > div { max-width: unset; margin: 0; padding: 0; }
+
 /* break out of the 1200px section container */
 .hero-container,
 .hero-container .hero-wrapper {
