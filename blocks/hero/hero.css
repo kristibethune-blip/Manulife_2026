@@ -77,3 +77,31 @@
 
 /* let the news strip tuck under the hero's bottom edge */
 main > .section:has(.cards.overlap) { margin-top: 0; }
+
+.hero {
+  background: var(--navy, #282b3e); /* fallback only, hidden once the image loads */
+  position: relative;
+  isolation: isolate;
+}
+
+.hero .hero-bg img {
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+.hero::before { content: none; }
+
+/* neutral navy gradient on the left only, not a full-image tint */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgb(40 43 62 / 80%) 0%,
+    rgb(40 43 62 / 35%) 50%,
+    rgb(40 43 62 / 0%) 100%
+  );
+}
