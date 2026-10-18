@@ -477,6 +477,72 @@ footer a:hover {
     animation-duration: 0.01ms !important;
   }
 }
+
+:root {
+  --navy: #282b3e;
+  --red: #c9442f;
+  --green: #00a758;
+
+  --background-color: #fff;
+  --text-color: #282b3e;
+  --link-color: #282b3e;
+  --link-hover-color: #c9442f;
+
+  --body-font: 'Source Sans 3', arial, sans-serif;
+  --heading-font: 'Source Sans 3', arial, sans-serif;
+
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 28px;
+  --heading-font-size-m: 22px;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+a:any-link { color: var(--link-color); }
+
+a.button:any-link,
+button {
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--red);
+  border: 2px solid var(--red);
+  border-radius: 2px;
+  color: #fff;
+  padding: 10px 24px;
+}
+
+a.button:hover,
+button:hover { background-color: #a73523; border-color: #a73523; }
+
+/* italic link in the doc = outlined button */
+a.button.secondary:any-link {
+  background: transparent;
+  color: var(--red);
+}
+
+/* Section Metadata: style = dark / light */
+main .section.dark { background: var(--navy); color: #fff; padding: 24px 0; }
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark p { color: #fff; }
+main .section.dark a:any-link { color: #fff; }
+main .section.light { background: #f4f4f4; padding: 24px 0; }
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap">
