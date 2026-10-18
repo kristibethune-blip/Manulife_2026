@@ -38,7 +38,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(90deg, rgb(40 43 62 / 85%) 0%, rgb(40 43 62 / 40%) 55%, rgb(40 43 62 / 0%) 100%);
+  
 }
 
 .hero .hero-content {
