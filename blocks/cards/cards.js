@@ -1,17 +1,18 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
-export default function decorate(block) {
-  /* change to ul, li */
-  const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
-    });
-    ul.append(li);
+if (block.classList.contains('insights')) {
+  block.querySelectorAll(':scope > ul > li').forEach((li) => {
+    const tag = li.querySelector('.cards-card-body > p:first-child');
+    const image = li.querySelector('.cards-card-image');
+    if (tag && image) { tag.classList.add('cards-card-tag'); image.append(tag); }
   });
-  ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  block.replaceChildren(ul);
+  const list = block.querySelector('ul');
+  const nav = document.createElement('div');
+  nav.className = 'cards-nav';
+  ['prev', 'next'].forEach((dir) => {
+    const btn = document.createElement('button');
+    btn.setAttribute('aria-label', dir);
+    btn.textContent = dir === 'prev' ? '‹' : '›';
+    btn.addEventListener('click', () => list.scrollBy({ left: (dir === 'prev' ? -1 : 1) * list.clientWidth, behavior: 'smooth' }));
+    nav.append(btn);
+  });
+  block.append(nav);
 }
