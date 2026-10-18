@@ -1,66 +1,53 @@
 /*
- * Manulife demo theme for AEM Edge Delivery Services
- * Drop-in replacement for /styles/styles.css in the aem-boilerplate.
- *
- * Strategy: the boilerplate header, footer, cards and columns blocks read
- * these :root tokens, so changing tokens restyles most of the site without
- * fighting block-level CSS. Rules below the tokens fill the gaps.
- *
- * Brand hex values are approximations. Swap in the official palette from
- * the Manulife brand guide by editing only the "brand palette" group.
+ * Manulife demo theme for AEM Edge Delivery Services.
+ * Header, footer, hero and cards styling lives in their own block CSS.
+ * This file holds tokens, base typography, buttons and section styles.
  */
 
 :root {
   /* brand palette */
-  --mfc-green: #00a758;
-  --mfc-green-deep: #00543c;
-  --mfc-green-ink: #003325;
-  --mfc-mint: #e8f5ee;
-  --mfc-stone: #f4f6f5;
-  --mfc-line: #d5dcd9;
-  --mfc-text: #1c2623;
-  --mfc-text-soft: #50605a;
+  --navy: #282b3e;
+  --red: #c9442f;
+  --red-dark: #a73523;
+  --green: #00a758;
+  --line: #d6d6d6;
+  --stone: #f4f4f4;
+  --text-soft: #5b5e70;
 
-  /* boilerplate tokens (these drive header, footer, cards, columns) */
+  /* boilerplate tokens */
   --background-color: #fff;
-  --light-color: var(--mfc-stone);
-  --dark-color: var(--mfc-green-deep);
-  --text-color: var(--mfc-text);
-  --link-color: var(--mfc-green-deep);
-  --link-hover-color: var(--mfc-green);
+  --light-color: var(--stone);
+  --dark-color: var(--navy);
+  --text-color: var(--navy);
+  --link-color: var(--navy);
+  --link-hover-color: var(--red);
 
-  /* fonts: swap the first family if Manulife Sans is licensed and loaded in fonts.css */
-  --body-font-family: 'Manulife Sans', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', arial, sans-serif;
-  --heading-font-family: var(--body-font-family);
+  /* fonts (loaded in head.html) */
+  --body-font-family: 'Barlow Semi Condensed', arial, sans-serif;
+  --heading-font-family: 'Barlow Semi Condensed', arial, sans-serif;
 
-  /* type scale (mobile first) */
-  --body-font-size-m: 1.0625rem;
-  --body-font-size-s: 0.9375rem;
-  --body-font-size-xs: 0.8125rem;
-  --heading-font-size-xxl: 2.25rem;
-  --heading-font-size-xl: 1.875rem;
-  --heading-font-size-l: 1.5rem;
-  --heading-font-size-m: 1.25rem;
-  --heading-font-size-s: 1.0625rem;
-  --heading-font-size-xs: 1rem;
+  /* type scale, mobile first */
+  --body-font-size-m: 17px;
+  --body-font-size-s: 15px;
+  --body-font-size-xs: 13px;
+  --heading-font-size-xxl: 34px;
+  --heading-font-size-xl: 28px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
 
   /* layout */
   --nav-height: 72px;
   --content-width: 1200px;
-  --radius-s: 6px;
-  --radius-m: 12px;
-  --shadow-raised: 0 1px 2px rgb(0 40 28 / 8%), 0 8px 24px rgb(0 40 28 / 8%);
 }
 
 @media (width >= 900px) {
   :root {
-    --body-font-size-m: 1.125rem;
-    --body-font-size-s: 1rem;
-    --heading-font-size-xxl: 3.5rem;
-    --heading-font-size-xl: 2.5rem;
-    --heading-font-size-l: 1.875rem;
-    --heading-font-size-m: 1.5rem;
-    --heading-font-size-s: 1.1875rem;
+    --heading-font-size-xxl: 44px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 26px;
+    --heading-font-size-m: 22px;
     --nav-height: 80px;
   }
 }
@@ -79,7 +66,7 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -101,24 +88,23 @@ footer .footer[data-block-status='loaded'] {
   visibility: visible;
 }
 
-/* headings */
+/* headings: regular weight, navy */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin-top: 1.4em;
+  margin-top: 1.2em;
   margin-bottom: 0.5em;
   font-family: var(--heading-font-family);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--mfc-green-ink);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--navy);
   scroll-margin: calc(var(--nav-height) + 1rem);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); letter-spacing: -0.025em; }
+h1 { font-size: var(--heading-font-size-xxl); }
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
@@ -135,11 +121,6 @@ blockquote {
   margin-bottom: 0.8em;
 }
 
-main > div > .default-content-wrapper p,
-main .default-content-wrapper li {
-  max-width: 68ch;
-}
-
 code,
 pre {
   font-size: var(--body-font-size-s);
@@ -147,7 +128,6 @@ pre {
 
 pre {
   padding: 1rem;
-  border-radius: var(--radius-s);
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
@@ -156,16 +136,15 @@ pre {
 blockquote {
   margin-inline: 0;
   padding: 0.25rem 0 0.25rem 1.25rem;
-  border-left: 4px solid var(--mfc-green);
-  color: var(--mfc-text-soft);
-  font-size: var(--heading-font-size-s);
+  border-left: 4px solid var(--red);
+  color: var(--text-soft);
 }
 
 hr {
   height: 1px;
   margin: 2rem 0;
   border: 0;
-  background-color: var(--mfc-line);
+  background-color: var(--line);
 }
 
 main img {
@@ -185,83 +164,79 @@ a:any-link {
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration-thickness: 2px;
 }
 
 :focus-visible {
-  outline: 3px solid var(--mfc-green);
+  outline: 3px solid var(--red);
   outline-offset: 3px;
-  border-radius: 2px;
 }
 
-/* buttons: EDS decorates a lone link in a paragraph as .button */
+/* buttons: EDS decorates a lone bold link as .button.primary */
 a.button:any-link,
 button {
   display: inline-block;
-  box-sizing: border-box;
   max-width: 100%;
   margin: 0.5rem 0;
-  padding: 0.7em 1.6em;
-  border: 2px solid var(--mfc-green-deep);
-  border-radius: 999px;
-  background-color: var(--mfc-green-deep);
+  padding: 10px 24px;
+  border: 2px solid var(--red);
+  border-radius: 2px;
+  background-color: var(--red);
   color: #fff;
-  font-family: inherit;
-  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 a.button:hover,
 a.button:focus-visible,
 button:hover,
 button:focus-visible {
-  border-color: var(--mfc-green);
-  background-color: var(--mfc-green);
+  border-color: var(--red-dark);
+  background-color: var(--red-dark);
   color: #fff;
   text-decoration: none;
 }
 
 button:disabled,
 button:disabled:hover {
-  border-color: var(--mfc-line);
-  background-color: var(--mfc-line);
-  color: var(--mfc-text-soft);
+  border-color: var(--line);
+  background-color: var(--line);
+  color: var(--text-soft);
   cursor: not-allowed;
 }
 
+/* italic link in the doc = outlined button */
 a.button.secondary,
 a.button.secondary:any-link {
-  border-color: var(--mfc-green-deep);
   background-color: transparent;
-  color: var(--mfc-green-deep);
+  color: var(--red);
 }
 
 a.button.secondary:hover,
 a.button.secondary:focus-visible {
-  background-color: var(--mfc-green-deep);
+  background-color: var(--red);
   color: #fff;
 }
 
-main .button-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1rem;
+main .button-container,
+main .button-wrapper {
+  margin: 0;
 }
 
 /* sections */
 main > .section {
   margin: 0;
-  padding: 3rem 1rem;
+  padding: 2.5rem 1rem;
 }
 
 @media (width >= 900px) {
   main > .section {
-    padding: 4.5rem 2rem;
+    padding: 3rem 2rem;
   }
 }
 
@@ -270,28 +245,32 @@ main > .section > div {
   margin-inline: auto;
 }
 
-main > .section:first-of-type > .default-content-wrapper > h1:first-child {
-  margin-top: 0;
+/* hero section: break out of the content container completely */
+main > .section.hero-container {
+  padding: 0;
 }
 
-/* section styles: add "Section Metadata" with Style = light, highlight or dark */
+main > .section.hero-container > div {
+  max-width: unset;
+  margin: 0;
+  padding: 0;
+}
+
+/* section styles: add Section Metadata with Style = light or dark */
 main > .section.light {
-  background-color: var(--mfc-stone);
-}
-
-main > .section.highlight {
-  background-color: var(--mfc-mint);
+  background-color: var(--stone);
 }
 
 main > .section.dark {
-  background-color: var(--mfc-green-deep);
+  background-color: var(--navy);
   color: #fff;
 }
 
 main > .section.dark h1,
 main > .section.dark h2,
 main > .section.dark h3,
-main > .section.dark h4 {
+main > .section.dark h4,
+main > .section.dark p {
   color: #fff;
 }
 
@@ -299,113 +278,16 @@ main > .section.dark a:any-link:not(.button) {
   color: #fff;
 }
 
-main > .section.dark a.button:any-link {
+main > .section.dark a.button.secondary:any-link {
   border-color: #fff;
-  background-color: #fff;
-  color: var(--mfc-green-deep);
-}
-
-main > .section.dark a.button:hover,
-main > .section.dark a.button:focus-visible {
-  border-color: var(--mfc-green);
-  background-color: var(--mfc-green);
+  background-color: transparent;
   color: #fff;
 }
 
-/* hero block: full-bleed image under a deep green wash so text stays legible */
-main .hero-container,
-main .hero-wrapper {
-  max-width: unset;
-  padding: 0;
-}
-
-main .hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 420px;
-  padding: 3rem 1rem;
-  background-color: var(--mfc-green-deep);
-  color: #fff;
-  overflow: hidden;
-}
-
-main .hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgb(0 51 37 / 92%) 0%, rgb(0 51 37 / 70%) 45%, rgb(0 51 37 / 10%) 100%);
-  z-index: 1;
-}
-
-main .hero picture,
-main .hero img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-main .hero > div {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: var(--content-width);
-  margin-inline: auto;
-}
-
-main .hero h1,
-main .hero h2 {
-  max-width: 16ch;
-  margin-top: 0;
-  color: #fff;
-}
-
-main .hero p {
-  max-width: 48ch;
-}
-
-main .hero a.button:any-link {
-  border-color: var(--mfc-green);
-  background-color: var(--mfc-green);
-}
-
-main .hero a.button:hover,
-main .hero a.button:focus-visible {
-  border-color: #fff;
+main > .section.dark a.button.secondary:hover,
+main > .section.dark a.button.secondary:focus-visible {
   background-color: #fff;
-  color: var(--mfc-green-deep);
-}
-
-@media (width >= 900px) {
-  main .hero {
-    min-height: 560px;
-    padding: 4rem 2rem;
-  }
-}
-
-/* cards block */
-main .cards > ul > li {
-  border: 1px solid var(--mfc-line);
-  border-radius: var(--radius-m);
-  background-color: #fff;
-  overflow: hidden;
-  transition: box-shadow 0.2s ease;
-}
-
-main .cards > ul > li:hover {
-  box-shadow: var(--shadow-raised);
-}
-
-main .cards .cards-card-body {
-  padding: 1.25rem;
-}
-
-main .cards .cards-card-body h3,
-main .cards .cards-card-body h4 {
-  margin-top: 0;
+  color: var(--navy);
 }
 
 /* columns block */
@@ -432,7 +314,7 @@ main table {
 }
 
 main th {
-  background-color: var(--mfc-green-deep);
+  background-color: var(--navy);
   color: #fff;
   font-weight: 600;
   text-align: left;
@@ -441,108 +323,11 @@ main th {
 main th,
 main td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--mfc-line);
+  border-bottom: 1px solid var(--line);
 }
 
 main tbody tr:nth-child(even) {
-  background-color: var(--mfc-stone);
+  background-color: var(--stone);
 }
 
-/* header and footer finishing touches (layout lives in the block CSS) */
-header nav {
-  border-bottom: 3px solid var(--mfc-green);
-}
-
-footer {
-  margin-top: 0;
-  background-color: var(--mfc-green-ink);
-  color: #d9e6e0;
-  font-size: var(--body-font-size-xs);
-}
-
-footer a:any-link {
-  color: #fff;
-}
-
-footer a:hover {
-  color: var(--mfc-mint);
-}
-
-/* respect user motion settings */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
-}
-
-:root {
-  --navy: #282b3e;
-  --red: #c9442f;
-  --green: #00a758;
-
-  --background-color: #fff;
-  --text-color: #282b3e;
-  --link-color: #282b3e;
-  --link-hover-color: #c9442f;
-
-  --body-font: 'Source Sans 3', arial, sans-serif;
-  --heading-font: 'Source Sans 3', arial, sans-serif;
-
-  --body-font-size-m: 16px;
-  --body-font-size-s: 14px;
-  --heading-font-size-xxl: 40px;
-  --heading-font-size-xl: 32px;
-  --heading-font-size-l: 28px;
-  --heading-font-size-m: 22px;
-}
-
-body {
-  font-family: var(--body-font);
-  color: var(--text-color);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--heading-font);
-  font-weight: 400;
-  color: var(--navy);
-  line-height: 1.25;
-}
-
-a:any-link { color: var(--link-color); }
-
-a.button:any-link,
-button {
-  font-family: var(--body-font);
-  font-size: 14px;
-  font-weight: 600;
-  background-color: var(--red);
-  border: 2px solid var(--red);
-  border-radius: 2px;
-  color: #fff;
-  padding: 10px 24px;
-}
-
-a.button:hover,
-button:hover { background-color: #a73523; border-color: #a73523; }
-
-/* italic link in the doc = outlined button */
-a.button.secondary:any-link {
-  background: transparent;
-  color: var(--red);
-}
-
-/* Section Metadata: style = dark / light */
-main .section.dark { background: var(--navy); color: #fff; padding: 24px 0; }
-main .section.dark h1,
-main .section.dark h2,
-main .section.dark h3,
-main .section.dark p { color: #fff; }
-main .section.dark a:any-link { color: #fff; }
-main .section.light { background: #f4f4f4; padding: 24px 0; }
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap">
+/*
