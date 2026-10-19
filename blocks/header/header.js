@@ -64,7 +64,9 @@ export default async function decorate(block) {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'nav-drop-btn';
-      btn.textContent = first.textContent.trim();
+      const label = document.createElement('span');
+      label.textContent = first.textContent.trim();
+      btn.append(label);
       first.remove();
       li.prepend(btn);
       btn.addEventListener('click', () => toggleDrop(nav, li));
