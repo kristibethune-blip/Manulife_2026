@@ -242,3 +242,49 @@ header nav button.nav-drop-btn:focus-visible {
       linear-gradient(var(--navy, #282b3e), var(--navy, #282b3e)) center 26px / 22px 2px no-repeat;
   }
 }
+/* main nav: force one row and neutralise leftover boilerplate styles */
+header nav .nav-sections .default-content-wrapper > ul {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* remove the boilerplate chevron drawn on the list item itself */
+header nav .nav-sections .nav-drop::after,
+header nav .nav-sections .nav-drop::before {
+  content: none;
+  display: none;
+}
+
+header nav .nav-sections button.nav-drop-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  position: static;
+  height: auto;
+  margin: 0;
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+
+header nav .nav-sections button.nav-drop-btn > span {
+  display: inline;
+  position: static;
+}
+
+.nav-bar .nav-inner { min-height: 56px; }
