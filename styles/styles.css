@@ -49,9 +49,6 @@
     --heading-font-size-l: 26px;
     --heading-font-size-m: 22px;
     --nav-height: 80px;
-    --body-font: 'Barlow Semi Condensed', arial, sans-serif;
-      body { font-size: 17px; }.
-    --heading-font: 'Barlow Semi Condensed', arial, sans-serif;
   }
 }
 
@@ -333,4 +330,32 @@ main tbody tr:nth-child(even) {
   background-color: var(--stone);
 }
 
-/*
+/* header and footer finishing touches (layout lives in the block CSS) */
+header nav {
+  border-bottom: 1px solid var(--line);
+}
+
+footer {
+  margin-top: 0;
+  background-color: var(--navy);
+  color: #d6d8e0;
+  font-size: var(--body-font-size-xs);
+}
+
+footer a:any-link {
+  color: #fff;
+}
+
+footer a:hover {
+  color: #d6d8e0;
+}
+
+/* respect user motion settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
