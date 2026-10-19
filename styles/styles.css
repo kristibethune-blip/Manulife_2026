@@ -49,6 +49,9 @@
     --heading-font-size-l: 26px;
     --heading-font-size-m: 22px;
     --nav-height: 80px;
+    --body-font: 'Barlow Semi Condensed', arial, sans-serif;
+      body { font-size: 17px; }.
+    --heading-font: 'Barlow Semi Condensed', arial, sans-serif;
   }
 }
 
