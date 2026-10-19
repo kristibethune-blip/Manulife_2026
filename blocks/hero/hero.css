@@ -41,6 +41,10 @@ main > .section.hero-container > div { max-width: unset; margin: 0; padding: 0; 
   position: absolute;
   inset: 0;
   z-index: -1;
+  background: linear-gradient(90deg, rgb(45 45 50 / 88%) 0%, rgb(45 45 50 / 55%) 45%, rgb(45 45 50 / 0%) 75%);
+}
+.hero { background: #2d2d32; min-height: 400px; }
+.hero h1 { font-size: 44px; line-height: 1.15; max-width: 14em; }
   
 }
 
