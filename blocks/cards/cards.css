@@ -113,9 +113,44 @@ main > .section:has(.cards.overlap) {
 }
 
 /* Cards (tiles): Support */
-.cards.tiles > ul { grid-template-columns: repeat(3, 1fr); }
-.cards.tiles .cards-card-body { padding: 20px; }
-.cards.tiles .cards-card-body strong { font-size: 18px; }
+.cards.tiles > ul {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.cards.tiles .cards-card-body {
+  padding: 32px 32px 36px;
+  font-size: 18px;
+}
+
+.cards.tiles .cards-card-body p { margin: 0; }
+
+/* cancel the "pin last paragraph to the bottom" rule used by the image cards */
+.cards.tiles .cards-card-body p:last-child {
+  margin: 0;
+  padding: 0;
+}
+
+.cards.tiles .icon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 28px;
+}
+
+.cards.tiles .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cards.tiles .cards-card-body strong {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+}
 
 /* Cards (insights): carousel with pill */
 .cards.insights { position: relative; }
