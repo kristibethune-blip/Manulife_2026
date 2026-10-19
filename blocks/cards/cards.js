@@ -25,7 +25,31 @@ export default function decorate(block) {
   });
 
   block.replaceChildren(ul);
+  // Cards (tiles): turn ":icon-name:" text into an icon, and make the first text line the title
+  if (block.classList.contains('tiles')) {
+    ul.querySelectorAll(':scope > li .cards-card-body').forEach((body) => {
+      const [first, second] = body.children;
 
+      const match = first?.textContent.trim().match(/^:([a-z0-9-]+):$/i);
+      if (match) {
+        const icon = document.createElement('span');
+        icon.className = `icon icon-${match[1]}`;
+        const img = document.createElement('img');
+        img.alt = '';
+        img.loading = 'lazy';
+        img.src = `${window.hlx?.codeBasePath || ''}/icons/${match[1]}.svg`;
+        icon.append(img);
+        first.replaceWith(icon);
+      }
+
+      const title = icon ? second : first;
+      if (title && !title.querySelector('strong')) {
+        const strong = document.createElement('strong');
+        strong.append(...title.childNodes);
+        title.append(strong);
+      }
+    });
+  }
   // Insights variant: category pill on the image, plus prev/next arrows
   if (block.classList.contains('insights')) {
     ul.querySelectorAll(':scope > li').forEach((li) => {
