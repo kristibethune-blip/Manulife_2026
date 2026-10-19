@@ -403,3 +403,18 @@ main > .section.dark a.button.secondary:focus-visible {
   background-color: var(--red);
   color: #fff;
 }
+/* dark promo band: crop the photo to a wide landscape frame */
+main > .section.dark .columns img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1070 / 590;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+@media (width < 900px) {
+  main > .section.dark .columns img {
+    aspect-ratio: 4 / 3;
+  }
+}
