@@ -41,12 +41,12 @@ export default function decorate(block) {
         icon.append(img);
         first.replaceWith(icon);
       }
-
-      const title = icon ? second : first;
-      if (title && !title.querySelector('strong')) {
+  
+      const titleEl = match ? body.children[1] : body.children[0];
+      if (titleEl && !titleEl.querySelector('strong')) {
         const strong = document.createElement('strong');
-        strong.append(...title.childNodes);
-        title.append(strong);
+        strong.append(...titleEl.childNodes);
+        titleEl.append(strong);
       }
     });
   }
