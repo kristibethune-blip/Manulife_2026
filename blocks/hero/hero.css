@@ -112,3 +112,18 @@ main > .section:has(.cards.overlap) { margin-top: 0; }
     rgb(40 43 62 / 0%) 100%
   );
 }
+
+/* align hero text with the 1200px content column used by the cards */
+main .hero .hero-content {
+  box-sizing: border-box;
+  width: calc(100% - 2rem);      /* matches section side padding on mobile */
+  max-width: var(--content-width, 1200px);
+  margin: 0 auto;
+  padding: 48px 0 88px;          /* no side padding, so text starts exactly at the card edge */
+}
+
+@media (width >= 900px) {
+  main .hero .hero-content {
+    width: calc(100% - 4rem);    /* matches section side padding on desktop */
+  }
+}
