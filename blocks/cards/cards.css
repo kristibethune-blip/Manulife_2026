@@ -71,13 +71,46 @@
   --circle-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M10 8l4 4-4 4'/%3E%3C/svg%3E");
 }
 
-/* Cards (overlap): news strip under the hero */
-.cards.overlap { position: relative; z-index: 2; margin-top: -48px; }
+/* Cards (overlap): news strip tucked under the hero */
+main > .section:has(.cards.overlap) {
+  position: relative;
+  z-index: 2;
+  margin-top: -56px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.cards.overlap { margin: 0; }
+
 .cards.overlap > ul { grid-template-columns: repeat(2, 1fr); }
-.cards.overlap > ul > li { border: 0; box-shadow: 0 2px 8px rgb(0 0 0 / 20%); position: relative; }
-.cards.overlap .cards-card-body { padding: 16px 20px; }
-.cards.overlap .cards-card-body p:last-child { display: none; }
-.cards.overlap .cards-card-body strong { font-size: 16px; }
+
+.cards.overlap > ul > li {
+  position: relative;
+  border: 0;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
+}
+
+.cards.overlap .cards-card-body { padding: 20px 56px 20px 24px; }
+.cards.overlap .cards-card-body p { margin: 0; }
+.cards.overlap .cards-card-body p:last-child { margin: 4px 0 0; padding: 0; }
+.cards.overlap .cards-card-body strong { font-size: 20px; }
+
+/* chevron on the right */
+.cards.overlap > ul > li::after {
+  content: '';
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--navy);
+  border-right: 2px solid var(--navy);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+@media (max-width: 899px) {
+  .cards.overlap > ul { grid-template-columns: 1fr; }
+}
 
 /* Cards (tiles): Support */
 .cards.tiles > ul { grid-template-columns: repeat(3, 1fr); }
